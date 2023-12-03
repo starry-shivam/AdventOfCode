@@ -37,11 +37,11 @@
  * Consider your entire calibration document. What is the sum of all of the calibration values?
  */
 
-package question1
+package day1
 
 import java.io.File
 
-private fun calculateSumPart1(lines: List<String>): Int {
+private fun calculatePart1(lines: List<String>): Int {
     var sum = 0
     // Loop over every line
     for (line in lines) {
@@ -80,7 +80,7 @@ private fun calculateSumPart1(lines: List<String>): Int {
  * What is the sum of all of the calibration values?
  */
 
-private fun calculateSumPart2(lines: List<String>): Int {
+private fun calculatePart2(lines: List<String>): Int {
     var sum = 0
     for(line in lines) {
         val numbers = findNumbers(line)
@@ -132,6 +132,6 @@ private fun findNumbers(line: String): List<Int> {
 fun main() {
     val file = File("src/main/kotlin/question1/input_sample.txt")
     val lines = file.readText().lines()
-    println("Part 1: ${calculateSumPart1(lines)}")
-    println("Part 2: ${calculateSumPart2(lines)}")
+    println("Part 1: ${calculatePart1(lines)}")
+    println("Part 2: ${calculatePart2(lines)}")
 }

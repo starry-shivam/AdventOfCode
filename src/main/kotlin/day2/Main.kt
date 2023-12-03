@@ -41,16 +41,15 @@
  *
  * Determine which games would have been possible if the bag had been loaded with only 12 red cubes,
  * 13 green cubes, and 14 blue cubes. What is the sum of the IDs of those games?
- *
- *
  */
 
-package question2
+package day2
 
 import java.io.File
 
 data class CubeBox(val red: Int = 0, val green: Int = 0, val blue: Int = 0) {
 
+    // Used for part tow only.
     val power: Int
         get() = red * green * blue
 
@@ -87,6 +86,12 @@ fun parseGame(s: String): Game {
     return Game(gameId, cubes)
 }
 
+fun calculatePart1(games: List<Game>): Int {
+    val maxCubes = CubeBox(red = 12, green = 13, blue = 14)
+    val possibleGames = games.filter { it.cubes.all { cube -> cube <= maxCubes } }
+    return possibleGames.sumOf { it.id }
+}
+
 /**
  * --- Part Two ---
  * The Elf says they've stopped producing snow because they aren't getting any water! He isn't
@@ -119,7 +124,7 @@ fun parseGame(s: String): Game {
  * the power of these sets?
  */
 
-fun sumPowers(games: List<Game>): Int {
+fun calculatePart2(games: List<Game>): Int {
     return games.sumOf {
         val resultBox = CubeBox(
             it.cubes.maxOf { cb -> cb.red },
@@ -130,12 +135,11 @@ fun sumPowers(games: List<Game>): Int {
     }
 }
 
+// ======================================== RESULTS =============================================== //
 
 fun main() {
     val file = File("src/main/kotlin/question2/input_sample.txt")
     val games = file.readText().lines().map { parseGame(it) }
-    val maxCubes = CubeBox(red = 12, green = 13, blue = 14)
-    val possibleGames = games.filter { it.cubes.all { cube -> cube <= maxCubes } }
-    println("Part 1: ${possibleGames.sumOf { it.id }}")
-    println("Part 2: ${sumPowers(games)}")
+    println("Part 1: ${calculatePart1(games)}")
+    println("Part 2: ${calculatePart2(games)}")
 }
