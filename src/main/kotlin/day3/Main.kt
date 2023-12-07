@@ -7,7 +7,7 @@ fun main() {
     val file = File("src/main/kotlin/day3/input_sample.txt")
     val day3 = Day3(file.readLines())
     println("Part 1: ${day3.calculatePart1()}")
-    println("Part 1: ${day3.calculatePart2()}")
+    println("Part 2: ${day3.calculatePart2()}")
 
 }
 
